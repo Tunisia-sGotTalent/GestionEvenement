@@ -6,6 +6,7 @@
 package testlogin;
 
 import com.jfoenix.controls.JFXTextField;
+import com.tgt.Service.ServiceEvenement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +22,8 @@ public class TestLogin extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        ServiceEvenement s = new ServiceEvenement();
+        System.out.println(s.afficher().size());
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

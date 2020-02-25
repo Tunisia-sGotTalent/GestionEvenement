@@ -32,6 +32,7 @@ public class ServiceEvenement implements IServiceEvenement<Evenement1> {
         con = DataBase.getInstance().getConnection();
 
     }
+    
 
     @Override
     public void ajouter(Evenement1 t) throws SQLException {
@@ -51,6 +52,28 @@ public class ServiceEvenement implements IServiceEvenement<Evenement1> {
 
         pre.executeUpdate();
     }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      *
@@ -74,11 +97,27 @@ public class ServiceEvenement implements IServiceEvenement<Evenement1> {
         
 
     }
-      public  ObservableList<Evenement1> afficher(Evenement1 E) throws SQLException {
+       public  ObservableList<Evenement1> afficher( ) throws SQLException {
            
        ObservableList<Evenement1> arr =FXCollections.observableArrayList();
    ste = con.createStatement();
         ResultSet rs = ste.executeQuery("select * from evenement");
+        while (rs.next()) {
+    arr.add(new Evenement1(rs.getInt("Id_Evenement") ,rs.getString("Nom_Evenement"),rs.getString("Date_Debut_Evenement"),rs.getString("Date_Fin_Evenement"),rs.getString("Lieu_Evenement"),rs.getInt("Nombre_max_Evenement"),rs.getString("Description_Evenement"),rs.getString("Image_Evenement")));
+           
+          
+        
+        
+
+        }
+        return arr;
+
+    }
+      public  ObservableList<Evenement1> afficherClient( ) throws SQLException {
+           
+       ObservableList<Evenement1> arr =FXCollections.observableArrayList();
+   ste = con.createStatement();
+        ResultSet rs = ste.executeQuery("select * from evenement where archive="+0);
         while (rs.next()) {
     arr.add(new Evenement1(rs.getInt("Id_Evenement") ,rs.getString("Nom_Evenement"),rs.getString("Date_Debut_Evenement"),rs.getString("Date_Fin_Evenement"),rs.getString("Lieu_Evenement"),rs.getInt("Nombre_max_Evenement"),rs.getString("Description_Evenement"),rs.getString("Image_Evenement")));
            
@@ -113,6 +152,54 @@ public class ServiceEvenement implements IServiceEvenement<Evenement1> {
         
         
     }
+                  public void modifierClient(Evenement1 E,int id) throws SQLException
+    {
+                                                                                                                                      
+        try {  
+            System.out.println("hahhahahaha");
+            if((E.getNom_Evenement()!="")&&(E.getDate_Debut_Evenement()!="")&& (E.getDate_Fin_Evenement()!="")&& (E.getLieu_Evenement()!="")&&(E.getNombre_max_Evenement()!=-1)&&(E.getDescription_Evenement()!="")&&(E.getImage_Evenement()!=""))
+                            {  String query="update evenement set archive=1 where evenement.Id_Evenement="+id;
+                            
+
+        ste=con.createStatement();
+           ste.executeUpdate(query);
+           System.out.println(id);
+           
+           
+            System.out.println("bien modifiée");
+             
+            }
+            else System.out.println("tu dois inserer tous les elements");
+        } catch (SQLException ex) {
+           
+        }
+        
+        
+    }
+      public void RestartClient() throws SQLException
+    {
+                                                                                                                                      
+        try {  
+            System.out.println("hahhahahaha");
+            String query="update evenement set archive=0 where evenement.archive=1";
+                            
+
+        ste=con.createStatement();
+           ste.executeUpdate(query);
+     //      System.out.println(id);
+           
+           
+            System.out.println("bien modifiée");
+             
+            
+           
+        } catch (SQLException ex) {
+           
+        }
+        
+        
+    }
+
 
         /*
              public void rechercher(Evenement1 E,String chercher) 
@@ -152,5 +239,74 @@ public class ServiceEvenement implements IServiceEvenement<Evenement1> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    
+    
+    
+    
+    
+    
+          public  Evenement1 afficher_indice( int i) throws SQLException {
+           
+  Evenement1    arr =new Evenement1();
+   ste = con.createStatement();
+   int nombre=0;
+        ResultSet rs = ste.executeQuery("select * from evenement where archive="+0);
+        while (rs.next()) {
+            if (i==nombre)
+            {
+                 arr = new Evenement1(rs.getInt("Id_Evenement") ,rs.getString("Nom_Evenement"),rs.getString("Date_Debut_Evenement"),rs.getString("Date_Fin_Evenement"),rs.getString("Lieu_Evenement"),rs.getInt("Nombre_max_Evenement"),rs.getString("Description_Evenement"),rs.getString("Image_Evenement"));
+      
+            }
+        
+          
+        
+        nombre++;
+
+        }
+        return arr;
+
+    }
+    
+    
+    
+        
+          public  Evenement1 afficher_indice1( int i) throws SQLException {
+           
+  Evenement1    arr =new Evenement1();
+   ste = con.createStatement();
+   int nombre=0;
+        ResultSet rs = ste.executeQuery("select * from evenement where archive="+0);
+        while (rs.next()) {
+            if (i==nombre)
+            {
+                 arr = new Evenement1(rs.getInt("Id_Evenement") ,rs.getString("Nom_Evenement"),rs.getString("Date_Debut_Evenement"),rs.getString("Date_Fin_Evenement"),rs.getString("Lieu_Evenement"),rs.getInt("Nombre_max_Evenement"),rs.getString("Description_Evenement"),rs.getString("Image_Evenement"));
+      
+            }
+        
+          
+        
+        nombre--;
+
+        }
+        return arr;
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
 }

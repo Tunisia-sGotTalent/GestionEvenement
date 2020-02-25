@@ -44,7 +44,7 @@ public class InscriptionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         final WebEngine web=viewweb.getEngine();
-          String urlweb="https://www.google.com/";
+          String urlweb="https:/www.facebook.com/Tunisian-Got-Talent-110896623799799/";
           web.load(urlweb);
         // TODO
     }    

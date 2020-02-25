@@ -23,6 +23,7 @@ public class Evenement1 {
     private int Nombre_max_Evenement;
     private String Description_Evenement;
     private String Image_Evenement;
+    private int archive;
     
     
     
@@ -113,6 +114,15 @@ public Evenement1()
     public void setImage_Evenement(String Image_Evenement) {
         this.Image_Evenement = Image_Evenement;
     }
+
+    public int getArchive() {
+        return archive;
+    }
+
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+    
 
     @Override
     public String toString() {

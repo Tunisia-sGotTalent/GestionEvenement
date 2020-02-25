@@ -39,6 +39,7 @@ public class ConnexionController implements Initializable {
     private JFXTextField nom_utilisateur;
     @FXML
     private JFXTextField mot_de_passe;
+    static int indice_evenment=0;
 
     /**
      * Initializes the controller class.
